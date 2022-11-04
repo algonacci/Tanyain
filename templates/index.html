@@ -33,13 +33,30 @@
                     <form action="/result" method="post" enctype="multipart/form-data">
                         <label for="file" class="form-label"></label>
                         <input class="form-control" type="file" id="file" name="file">
-                        <input class="btn btn-primary mt-3" type="submit" value="Generate Questions!">
+                        <input class="btn btn-primary mt-3" type="submit" value="Generate Questions!" id="submitForm">
                     </form>
+
+                    {% if message %}
+                        <h3 class="mt-3">{{ message }}</h3>
+                    {% endif %}
                 </div>
-                
             </div>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#submitForm").click(function () {
+          $(this).addClass("loader");
+          $(this).addClass("disabled");
+
+          setTimeout(function () {
+            $("#submitForm").removeClass("loader");
+          }, 60000);
+        });
+      });
+    </script>
 </body>
 
 </html>
